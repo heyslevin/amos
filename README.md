@@ -15,7 +15,7 @@ This is the final project for the javascript course on The Odin Project. It's pr
 
 ## Notes
 
--
+-Started on May 26
 
 ## Where can I see it?
 

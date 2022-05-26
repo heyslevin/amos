@@ -8,12 +8,21 @@ import {
   Code,
   Grid,
   theme,
+  Heading,
+  Flex,
+  Image,
+  LinkBox,
+  LinkOverlay,
+  Button,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './utils/ColorModeSwitcher';
 import { Logo } from './components/layout/Logo';
 import { useEffect } from 'react';
 
 import auth from './utils/firebase';
+
+import Navbar from './components/layout/Navbar';
+import Product from './components/layout/Product';
 
 function App() {
   useEffect(() => {
@@ -25,26 +34,21 @@ function App() {
   }, []);
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
+      <Navbar />
+      <VStack>
+        <Heading>My Shelf</Heading>
+        <Button>Add product</Button>
+
+        <Flex wrap="wrap">
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+        </Flex>
+      </VStack>
     </ChakraProvider>
   );
 }
