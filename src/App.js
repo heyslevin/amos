@@ -9,10 +9,20 @@ import {
   Grid,
   theme,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import { ColorModeSwitcher } from './utils/ColorModeSwitcher';
+import { Logo } from './components/layout/Logo';
+import { useEffect } from 'react';
+
+import auth from './utils/firebase';
 
 function App() {
+  useEffect(() => {
+    async function loadData() {
+      let authMethods = await auth();
+      const login = await authMethods.authInit();
+    }
+    loadData();
+  }, []);
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">
