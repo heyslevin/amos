@@ -1,28 +1,13 @@
 import React from 'react';
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-  Heading,
-  Flex,
-  Image,
-  LinkBox,
-  LinkOverlay,
-  Button,
-} from '@chakra-ui/react';
-import { ColorModeSwitcher } from './utils/ColorModeSwitcher';
-import { Logo } from './components/layout/Logo';
+import { ChakraProvider, theme } from '@chakra-ui/react';
 import { useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 import auth from './utils/firebase';
 
-import Navbar from './components/layout/Navbar';
-import Product from './components/layout/Product';
+import Navbar from './components/nav/Navbar';
+import Products from './views/Products';
+import Shelves from './views/Shelves';
 
 function App() {
   useEffect(() => {
@@ -35,20 +20,10 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Navbar />
-      <VStack>
-        <Heading>My Shelf</Heading>
-        <Button>Add product</Button>
-
-        <Flex wrap="wrap">
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-        </Flex>
-      </VStack>
+      <Routes>
+        <Route path="/shelves" element={<Shelves />} />
+        <Route path="/products" element={<Products />} />
+      </Routes>
     </ChakraProvider>
   );
 }
