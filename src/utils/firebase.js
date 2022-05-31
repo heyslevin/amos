@@ -17,35 +17,34 @@ const firebaseConfig = {
 
 // const analytics = getAnalytics(app);
 
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 const auth = async function () {
   // Initialize Firebase
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
   const authCredentials = getAuth();
 
   const authInit = async () => {
-    // Sign in
-    signInWithEmailAndPassword(
-      authCredentials,
-      process.env.REACT_APP_email,
-      process.env.REACT_APP_password
-    )
-      .then(userCredential => {
-        //Signed in
-        const user = userCredential.user;
-        console.log('Signed in');
-        console.log(user);
-      })
-      .catch(error => {
-        const errorCode = error.errorCode;
-        const errorMessage = error.message;
-        console.log('Could not sign in');
-        console.log(errorMessage);
-      });
+    try {
+      // Sign in
+      const resp = await signInWithEmailAndPassword(
+        authCredentials,
+        process.env.REACT_APP_email,
+        process.env.REACT_APP_password
+      );
+      const user = resp.user;
+      console.log('Signed in');
+      console.log(user);
+    } catch (error) {
+      const errorCode = error.errorCode;
+      const errorMessage = error.message;
+      console.log('Could not sign in');
+      console.log(errorMessage);
+    }
   };
 
-  return { authInit, db };
+  return { authInit };
 };
 
-export default auth;
+export { auth, db };

@@ -1,13 +1,22 @@
-import { firestore, auth } from './firebase';
+import { db } from './firebase';
+import {
+  collection,
+  query,
+  where,
+  doc,
+  getDoc,
+  getDocs,
+} from 'firebase/firestore';
 
-const initialDataLoad = async () => {
-  //   const collectionRef = firestore.collection(db, 'players');
-  //   const snapshot = await firestore.getDocs(collectionRef);
-  //   let playersArray = snapshot.docs.map(doc => {
-  //     let docData = doc.data();
-  //     return { name: docData.name, time: docData.time };
-  //   });
-  //   return playersArray;
+const loadShelves = async setShelves => {
+  const q = query(collection(db, 'shelves'));
+  const querySnapshot = await getDocs(q);
+  let allData = querySnapshot.docs.map(doc => {
+    return doc.data();
+  });
+  console.log('here come the data');
+  console.log(allData);
+  setShelves(allData);
 };
 
-export { initialDataLoad };
+export { loadShelves };

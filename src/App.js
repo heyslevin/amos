@@ -3,7 +3,7 @@ import { ChakraProvider, theme } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import auth from './utils/firebase';
+import { auth } from './utils/firebase';
 
 import Navbar from './components/nav/Navbar';
 import Products from './views/Products';
@@ -17,8 +17,9 @@ function App() {
     }
     loadData();
   }, []);
+
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider>
       <Navbar />
       <Routes>
         <Route path="/shelves" element={<Shelves />} />
