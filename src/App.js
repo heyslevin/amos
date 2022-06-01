@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChakraProvider, theme } from '@chakra-ui/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { auth } from './utils/firebase';
@@ -10,6 +10,8 @@ import Products from './views/Products';
 import Shelves from './views/Shelves';
 
 function App() {
+  const [shelfId, setShelfId] = useState();
+
   useEffect(() => {
     async function loadData() {
       let authMethods = await auth();
@@ -22,8 +24,8 @@ function App() {
     <ChakraProvider>
       <Navbar />
       <Routes>
-        <Route path="/shelves" element={<Shelves />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/shelves" element={<Shelves setShelfId={setShelfId} />} />
+        <Route path="/products" element={<Products shelfId={shelfId} />} />
       </Routes>
     </ChakraProvider>
   );

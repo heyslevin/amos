@@ -7,13 +7,13 @@ import {
   LinkOverlay,
 } from '@chakra-ui/react';
 
-function Product() {
+function Product({ name, brand }) {
   return (
     <LinkBox as={VStack} border="1px solid white" p={3} rounded="lg" m="5px">
       <Image mt={0} src="https://bit.ly/dan-abramov"></Image>
       <Box align="center">
-        <Text fontSize="sm">Avon</Text>
-        <Text>Ibiza Hair G Series (G5)</Text>
+        <Text fontSize="sm">{brand}</Text>
+        <Text>{name}</Text>
       </Box>
       <LinkOverlay mt="0 !important" p={0} href="www.firmalt.com" />
     </LinkBox>

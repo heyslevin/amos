@@ -12,7 +12,10 @@ import {
 
 import { Link as RouterLink } from 'react-router-dom';
 
-export default function Shelf({ title }) {
+export default function Shelf({ shelfData, setShelfId }) {
+  console.log('data time');
+  console.log(shelfData);
+
   return (
     <LinkBox>
       <VStack
@@ -41,9 +44,18 @@ export default function Shelf({ title }) {
           ></Image>
         </HStack>
 
-        <Heading size="md">{title}</Heading>
+        <Heading size="md">{shelfData.title}</Heading>
         <Text>13 productos</Text>
-        <LinkOverlay as={RouterLink} to="/products" mt="0 !important" p={0} />
+        <Text fontSize="xs" color="gray.500">
+          {shelfData.id}
+        </Text>
+        <LinkOverlay
+          as={RouterLink}
+          onClick={() => setShelfId(shelfData.id)}
+          to="/products"
+          mt="0 !important"
+          p={0}
+        />
       </VStack>
     </LinkBox>
   );
