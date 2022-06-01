@@ -1,6 +1,14 @@
 import React from 'react';
 
-import { VStack, Button, Heading, Flex, Center } from '@chakra-ui/react';
+import {
+  VStack,
+  HStack,
+  Button,
+  Heading,
+  Flex,
+  Center,
+  Skeleton,
+} from '@chakra-ui/react';
 
 import Product from '../components/layout/Product';
 
@@ -9,33 +17,42 @@ import { useState, useEffect } from 'react';
 
 export default function Products({ shelfId }) {
   const [productsInShelf, setProductsInShelf] = useState([]);
-  const [status, setStatus] = useState('Loading...');
+  const [emptyProducts, setEmptyProducts] = useState(false);
 
   let allProducts = productsInShelf.map((product, i) => {
     return <Product key={i} name={product.name} brand={product.brand} />;
   });
+
   useEffect(() => {
     //fix here
-    fetchShelfProducts(shelfId, setProductsInShelf);
+    fetchShelfProducts(shelfId, setProductsInShelf, setEmptyProducts);
   }, []);
 
-  useEffect(() => {
-    console.log(productsInShelf.length);
-    setStatus(productsInShelf.length === 0 ? 'No products' : 'Loading...');
-  }, [productsInShelf]);
-
-  let loading = (
-    <Center>
-      <Heading>{status}</Heading>
-    </Center>
-  );
+  let skeleton;
+  if (!emptyProducts) {
+    skeleton = (
+      <HStack>
+        <Skeleton w="300px" h="390px" rounded="lg" m="5px" />
+        <Skeleton w="300px" h="390px" rounded="lg" m="5px" />
+        <Skeleton w="300px" h="390px" rounded="lg" m="5px" />
+      </HStack>
+    );
+  } else {
+    skeleton = (
+      <Center height="400px">
+        <Heading>Oh no! No products :(</Heading>
+      </Center>
+    );
+  }
 
   return (
     <VStack>
       <Heading>My Products</Heading>
       <Button>Add product</Button>
 
-      <Flex wrap="wrap">{allProducts.length === 0 ? status : allProducts}</Flex>
+      <Flex wrap="wrap">
+        {allProducts.length === 0 ? skeleton : allProducts}
+      </Flex>
     </VStack>
   );
 }

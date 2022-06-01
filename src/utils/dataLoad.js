@@ -19,7 +19,11 @@ const loadShelves = async setShelvesData => {
   setShelvesData(allShelvesData);
 };
 
-const fetchShelfProducts = async (shelfId, setProductsInShelf) => {
+const fetchShelfProducts = async (
+  shelfId,
+  setProductsInShelf,
+  setEmptyProducts
+) => {
   if (!shelfId) {
     return;
   }
@@ -29,9 +33,11 @@ const fetchShelfProducts = async (shelfId, setProductsInShelf) => {
   const allProductData = querySnapshot.docs.map(doc => {
     return doc.data();
   });
-  console.log('allProductData');
-  console.log(allProductData);
+
   setProductsInShelf(allProductData);
+  if (allProductData.length === 0) {
+    setEmptyProducts(true);
+  }
 };
 
 export { loadShelves, fetchShelfProducts };

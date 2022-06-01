@@ -1,4 +1,12 @@
-import { Flex, Heading, HStack, VStack, Center } from '@chakra-ui/react';
+import {
+  Flex,
+  Heading,
+  HStack,
+  VStack,
+  Center,
+  Skeleton,
+  Box,
+} from '@chakra-ui/react';
 import React from 'react';
 import { loadShelves } from '../utils/dataLoad';
 
@@ -18,6 +26,13 @@ export default function Shelves({ setShelfId }) {
     </Center>
   );
 
+  let skeleton = (
+    <VStack>
+      <Skeleton w="1000px" h="300px" rounded="lg" />
+      <Skeleton w="1000px" h="300px" rounded="lg" />
+    </VStack>
+  );
+
   useEffect(() => {
     loadShelves(setShelvesData);
   }, []);
@@ -28,7 +43,7 @@ export default function Shelves({ setShelfId }) {
       <Flex wrap="wrap" justifyContent="center">
         {/* <Shelf title="Products for Sensitive Skin" />
         <Shelf title="My favorite cleansers" /> */}
-        {allShelves.length === 0 ? loading : allShelves}
+        {allShelves.length === 0 ? skeleton : allShelves}
       </Flex>
     </VStack>
   );
