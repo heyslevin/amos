@@ -26,7 +26,7 @@ export default function Products({ shelfId }) {
   useEffect(() => {
     //fix here
     fetchShelfProducts(shelfId, setProductsInShelf, setEmptyProducts);
-  }, []);
+  }, [shelfId]);
 
   let skeleton;
   if (!emptyProducts) {

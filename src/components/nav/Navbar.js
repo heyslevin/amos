@@ -1,22 +1,31 @@
-import { Flex, Heading, HStack, Box, Link } from '@chakra-ui/react';
+import {
+  Flex,
+  Heading,
+  HStack,
+  Box,
+  Link,
+  Avatar,
+  Text,
+} from '@chakra-ui/react';
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 export default function Navbar() {
   return (
     <HStack p={2}>
-      <Flex flex="1" justifyContent="space-between">
+      <Flex flex="1" justifyContent="space-between" align="center">
         <Box>
           <Heading size="lg">Amos Shelves</Heading>
         </Box>
-        <Box>
-          <Link ml={3} as={RouterLink} to="/Products">
-            Products
-          </Link>
-          <Link ml={3} as={RouterLink} to="/Shelves">
+        <Flex align="center">
+          <Link mr={5} as={RouterLink} to="/Shelves">
             Shelves
           </Link>
-        </Box>
+          <Flex as={RouterLink} to="/Profile" align="center">
+            <Avatar mr={1} size="sm" name="James Donovan" />
+            <Link>Profile</Link>
+          </Flex>
+        </Flex>
       </Flex>
     </HStack>
   );
