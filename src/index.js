@@ -9,6 +9,7 @@ const root = ReactDOM.createRoot(container);
 
 root.render(
   <BrowserRouter>
+    <ColorModeScript initialColorMode="light" useSystemColorMode="false" />
     <App />
   </BrowserRouter>
 );

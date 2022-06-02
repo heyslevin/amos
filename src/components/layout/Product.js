@@ -9,7 +9,14 @@ import {
 
 function Product({ name, brand }) {
   return (
-    <LinkBox as={VStack} border="1px solid white" p={3} rounded="lg" m="5px">
+    <LinkBox
+      as={VStack}
+      border="1px solid"
+      borderColor="gray.200"
+      p={3}
+      rounded="lg"
+      m="5px"
+    >
       <Image mt={0} src="https://bit.ly/dan-abramov"></Image>
       <Box align="center">
         <Text fontSize="sm">{brand}</Text>

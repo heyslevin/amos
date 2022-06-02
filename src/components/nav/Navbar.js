@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { ColorModeSwitcher } from '../../utils/ColorModeSwitcher';
 
 export default function Navbar() {
   return (
@@ -25,6 +26,7 @@ export default function Navbar() {
             <Avatar mr={1} size="sm" name="James Donovan" />
             <Link>Profile</Link>
           </Flex>
+          <ColorModeSwitcher />
         </Flex>
       </Flex>
     </HStack>

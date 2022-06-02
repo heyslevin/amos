@@ -3,6 +3,8 @@ import { ChakraProvider, theme } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import amosTheme from './styles/amosTheme';
+
 import { auth } from './utils/firebase';
 
 import Navbar from './components/nav/Navbar';
@@ -22,9 +24,10 @@ function App() {
   }, []);
 
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={amosTheme}>
       <Navbar />
       <Routes>
+        <Route path="/" element={<Shelves setShelfId={setShelfId} />} />
         <Route path="/shelves" element={<Shelves setShelfId={setShelfId} />} />
         <Route path="/products" element={<Products shelfId={shelfId} />} />
         <Route path="/profile" element={<Profile />} />

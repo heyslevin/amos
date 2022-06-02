@@ -22,7 +22,8 @@ export default function Shelf({ shelfData, setShelfId }) {
         w="1000px"
         h="300px"
         p={3}
-        border="1px solid white"
+        border="1px solid"
+        borderColor="gray.200"
         rounded="lg"
         m={1}
       >
