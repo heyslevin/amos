@@ -11,7 +11,7 @@ import Navbar from './components/nav/Navbar';
 import Products from './views/Products';
 import Shelves from './views/Shelves';
 import Profile from './views/Profile/Profile';
-import MyCollections from './views/Profile/MyCollections';
+import MyShelves from './views/Profile/MyShelves';
 import MyProducts from './views/Profile/MyProducts';
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
         <Route path="/shelves" element={<Shelves setShelfId={setShelfId} />} />
         <Route path="/products" element={<Products shelfId={shelfId} />} />
         <Route path="/profile" element={<Profile />}>
-          <Route path="my-collections" element={<MyCollections />} />
+          <Route path="my-collections" element={<MyShelves />} />
           <Route path="my-products" element={<MyProducts />} />
         </Route>
       </Routes>

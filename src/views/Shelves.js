@@ -16,15 +16,11 @@ import { useState } from 'react';
 
 export default function Shelves({ setShelfId }) {
   const [shelvesData, setShelvesData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   let allShelves = shelvesData.map((shelf, i) => (
     <Shelf key={i} shelfData={shelf} setShelfId={setShelfId} />
   ));
-  let loading = (
-    <Center>
-      <Heading>Loading...</Heading>
-    </Center>
-  );
 
   let skeleton = (
     <VStack>
@@ -34,7 +30,7 @@ export default function Shelves({ setShelfId }) {
   );
 
   useEffect(() => {
-    loadShelves(setShelvesData);
+    loadShelves(setShelvesData, setLoading);
   }, []);
 
   return (

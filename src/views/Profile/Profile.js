@@ -9,6 +9,7 @@ import {
   Container,
   Box,
   Button,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
 
@@ -19,8 +20,10 @@ import { Outlet, NavLink } from 'react-router-dom';
 export default function Profile() {
   //Button Styling
   let activeStyle = {
-    background: 'var(--chakra-colors-gray-700)',
+    background: 'var(--chakra-colors-gray-100)',
   };
+
+  let activeStyle2 = 'gray.100';
 
   return (
     <VStack px={8}>
@@ -52,7 +55,9 @@ export default function Profile() {
               _focus={{
                 outline: '0 !important',
               }}
-              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              _activeLink={{
+                background: useColorModeValue('gray.100', 'gray.700'),
+              }}
             >
               Your Collections
             </Button>
@@ -65,7 +70,9 @@ export default function Profile() {
               _focus={{
                 outline: '0 !important',
               }}
-              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              _activeLink={{
+                background: useColorModeValue('gray.100', 'gray.700'),
+              }}
             >
               Your Products
             </Button>

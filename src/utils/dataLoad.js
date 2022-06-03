@@ -8,7 +8,7 @@ import {
   getDocs,
 } from 'firebase/firestore';
 
-const loadShelves = async setShelvesData => {
+const loadShelves = async (setShelvesData, setFinishLoading) => {
   const q = query(collection(db, 'shelves'));
   const querySnapshot = await getDocs(q);
   let allShelvesData = querySnapshot.docs.map(doc => {
@@ -17,6 +17,7 @@ const loadShelves = async setShelvesData => {
     return { id, ...data };
   });
   setShelvesData(allShelvesData);
+  setFinishLoading(true);
 };
 
 const fetchShelfProducts = async (
