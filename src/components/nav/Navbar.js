@@ -13,7 +13,7 @@ import { ColorModeSwitcher } from '../../utils/ColorModeSwitcher';
 
 export default function Navbar() {
   return (
-    <HStack p={2}>
+    <HStack px={8} pt={3}>
       <Flex flex="1" justifyContent="space-between" align="center">
         <Box>
           <Heading size="lg">Amos Shelves</Heading>
@@ -24,7 +24,7 @@ export default function Navbar() {
           </Link>
           <Flex as={RouterLink} to="/Profile" align="center">
             <Avatar mr={1} size="sm" name="James Donovan" />
-            <Link>Profile</Link>
+            <Text>Profile</Text>
           </Flex>
           <ColorModeSwitcher />
         </Flex>
