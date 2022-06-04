@@ -10,10 +10,14 @@ import {
   VStack,
   Center,
   Skeleton,
+  Divider,
+  Stack,
 } from '@chakra-ui/react';
 import React from 'react';
 import { useEffect, useState } from 'react';
+
 import MyShelf from '../../components/layout/MyShelf';
+import CreateCollection from './CreateCollection';
 
 import { loadShelves } from '../../utils/dataLoad';
 
@@ -21,9 +25,15 @@ export default function MyCollections() {
   const [myShelvesData, setMyShelvesData] = useState([]);
   const [finishedLoading, setFinishLoading] = useState(false);
 
-  const myShelves = myShelvesData.map((shelf, i) => (
-    <MyShelf shelfData={shelf} finishedLoading={finishedLoading} />
-  ));
+  const myShelves = (
+    <React.Fragment>
+      {myShelvesData.map((shelf, i) => (
+        <MyShelf shelfData={shelf} finishedLoading={finishedLoading} />
+      ))}
+
+      <CreateCollection />
+    </React.Fragment>
+  );
 
   let skeletons = (
     <HStack>
@@ -46,8 +56,8 @@ export default function MyCollections() {
       >
         Add Collection
       </Button>
-      <Flex>
-        <HStack>{finishedLoading ? myShelves : skeletons}</HStack>
+      <Flex pb={10} direction="row" wrap="wrap">
+        {finishedLoading ? myShelves : skeletons}
       </Flex>
     </VStack>
   );

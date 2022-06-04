@@ -14,6 +14,9 @@ export default function MyShelf({ shelfData, finishedLoading }) {
   return (
     <Skeleton isLoaded={finishedLoading}>
       <Flex
+        mr={2}
+        ms={0}
+        mt={2}
         direction="column"
         rounded="lg"
         h={300}
@@ -30,17 +33,17 @@ export default function MyShelf({ shelfData, finishedLoading }) {
         <Flex
           p={3}
           flexBasis="60%"
-          background={randomColor()}
+          background={randomColor({ luminosity: 'light' })}
           w="100%"
           justifyContent="center"
         >
           <Center>
-            <Heading size="4xl" color={randomColor()}>
+            <Heading size="4xl" color={randomColor({ luminosity: 'dark' })}>
               {shelfData.title.charAt(0)}
             </Heading>
           </Center>
         </Flex>
-        <Divider borderColor="gray.500" />
+        <Divider borderColor="gray.300" />
         <Flex p={3} flex="1">
           <Heading size="md">{shelfData.title}</Heading>
         </Flex>

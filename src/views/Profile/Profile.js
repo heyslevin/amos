@@ -43,8 +43,9 @@ export default function Profile() {
         </VStack>
       </Flex>
       <Divider pt={5} />
-      <Flex width="100%" justifyContent="left" pt={10}>
-        <VStack flex="1" justifyContent="left" align="flex-start">
+
+      <Flex width="100%" pt={10}>
+        <VStack flex="1" align="flex-start">
           <VStack flex="1" align="stretch">
             <Button
               as={NavLink}
@@ -78,7 +79,7 @@ export default function Profile() {
             </Button>
           </VStack>
         </VStack>
-        <VStack flex="3" align="left">
+        <VStack flex="3" align="flex-start">
           <Outlet />
         </VStack>
       </Flex>
