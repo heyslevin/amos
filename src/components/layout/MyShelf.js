@@ -39,7 +39,7 @@ export default function MyShelf({ shelfData, finishedLoading }) {
         >
           <Center>
             <Heading size="4xl" color={randomColor({ luminosity: 'dark' })}>
-              {shelfData.title.charAt(0)}
+              {shelfData.title.charAt(0).toUpperCase()}
             </Heading>
           </Center>
         </Flex>

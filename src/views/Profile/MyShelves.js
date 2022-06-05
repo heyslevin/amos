@@ -29,7 +29,7 @@ export default function MyCollections() {
   const myShelves = (
     <React.Fragment>
       {myShelvesData.map((shelf, i) => (
-        <MyShelf shelfData={shelf} finishedLoading={finishedLoading} />
+        <MyShelf key={i} shelfData={shelf} finishedLoading={finishedLoading} />
       ))}
 
       <CreateCollection />
