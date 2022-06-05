@@ -15,7 +15,7 @@ import React from 'react';
 
 import { BiCollection, BiCube } from 'react-icons/bi';
 import { FaGratipay } from 'react-icons/fa';
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, NavLink, Link as RouterLink } from 'react-router-dom';
 
 export default function Profile() {
   //Button Styling
@@ -49,7 +49,7 @@ export default function Profile() {
           <VStack flex="1" align="stretch">
             <Button
               as={NavLink}
-              to="my-collections"
+              to="my-shelves"
               justifyContent="flex-start"
               variant="ghost"
               leftIcon={<BiCollection />}

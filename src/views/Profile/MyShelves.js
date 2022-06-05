@@ -15,9 +15,10 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { Link as RouterLink, Outlet } from 'react-router-dom';
 
 import MyShelf from '../../components/layout/MyShelf';
-import CreateCollection from './CreateCollection';
+import CreateCollection from '../../components/layout/NewCollectionBlock';
 
 import { loadShelves } from '../../utils/dataLoad';
 
@@ -50,6 +51,8 @@ export default function MyCollections() {
   return (
     <VStack align="flex-start">
       <Button
+        as={RouterLink}
+        to="/my-shelves/edit/new-shelf"
         bg="purple.600"
         color={useColorModeValue('white', 'white')}
         _hover={{ bg: 'purple.800' }}
