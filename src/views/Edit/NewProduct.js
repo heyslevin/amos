@@ -10,10 +10,15 @@ import {
   VStack,
   HStack,
   Button,
+  Text,
+  Image,
 } from '@chakra-ui/react';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { BiCheckCircle } from 'react-icons/bi';
+
+import { FileUploader } from 'react-drag-drop-files';
+import Dropzone from '../../components/forms/Dropzone';
 
 import { addNewShelf } from '../../utils/dataSend';
 
@@ -21,6 +26,13 @@ export default function NewShelf({ setCategory }) {
   const [formData, setFormData] = useState({});
   const [isLoading, setisLoading] = useState(false);
   const [successForm, setSuccessForm] = useState(false);
+  const [file, setFile] = useState({});
+
+  const fileTypes = ['JPEG', 'PNG', 'GIF'];
+
+  const handleChange = file => {
+    setFile(file);
+  };
 
   const updateInfo = e => {
     setFormData({
@@ -32,6 +44,8 @@ export default function NewShelf({ setCategory }) {
   const handleSubmit = e => {
     e.preventDefault();
     setisLoading(true);
+
+    // Handle Saving in Database
     addNewShelf({
       title: formData.title,
       description: formData.description,
@@ -47,7 +61,7 @@ export default function NewShelf({ setCategory }) {
   };
 
   useEffect(() => {
-    setCategory('Shelf');
+    setCategory('Product');
   }, []);
 
   return (
@@ -63,33 +77,49 @@ export default function NewShelf({ setCategory }) {
       >
         <Container align="center">
           <Heading pb={10} size="lg">
-            Create a new shelf
+            Create a new product
           </Heading>
           <Box border="1px solid" borderColor="gray.600" p={3} rounded="lg">
             <form onSubmit={handleSubmit}>
               <FormControl>
-                <FormLabel htmlFor="title" fontSize="1em">
-                  Title
+                <FormLabel htmlFor="name" fontSize="1em">
+                  Name
                 </FormLabel>
                 <Input
-                  required
                   mb={5}
-                  id="title"
-                  name="title"
-                  placeholder="Enter Title"
+                  id="name"
+                  name="name"
+                  placeholder="Enter Product Name"
+                  onChange={updateInfo}
+                  value={formData.title}
+                />
+                <FormLabel htmlFor="brand" fontSize="1em">
+                  Brand
+                </FormLabel>
+                <Input
+                  mb={5}
+                  id="brand"
+                  name="brand"
+                  placeholder="Enter brand"
                   onChange={updateInfo}
                   value={formData.title}
                 />
                 <FormLabel htmlFor="description" fontSize="1em">
-                  Description
+                  Additional info (optional)
                 </FormLabel>
                 <Textarea
+                  mb={5}
                   id="description"
                   name="description"
-                  placeholder="Enter Description..."
+                  placeholder="Enter additional info, why you love it, etc."
                   onChange={updateInfo}
                   value={formData.description}
                 />
+
+                <FormLabel htmlFor="image" fontSize="1em">
+                  Upload Image
+                </FormLabel>
+                <Dropzone setFile={setFile} file={file} />
               </FormControl>
 
               <HStack pt={8} justify="space-between">

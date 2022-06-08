@@ -5,6 +5,7 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import { getAnalytics } from 'firebase/analytics';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_apiKey,
@@ -19,6 +20,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 const auth = async function () {
   // Initialize Firebase
@@ -47,4 +49,4 @@ const auth = async function () {
   return { authInit };
 };
 
-export { auth, db };
+export { auth, db, storage };

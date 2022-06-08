@@ -2,7 +2,7 @@ import { Box, Button, Divider, Flex, Heading, HStack } from '@chakra-ui/react';
 import React from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
-export default function NavbarEdit() {
+export default function NavbarEdit({ category }) {
   const navigate = useNavigate();
 
   return (
@@ -10,7 +10,7 @@ export default function NavbarEdit() {
       <HStack px={8} py={3}>
         <Flex flex="1" justifyContent="space-between" align="center">
           <Box>
-            <Heading size="md">Add New Collection</Heading>
+            <Heading size="md">Add New {category}</Heading>
           </Box>
           <Button onClick={() => navigate(-1)} variant="outline">
             Cancel

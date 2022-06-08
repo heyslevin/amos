@@ -14,11 +14,13 @@ import Profile from './views/Profile/Profile';
 import MyShelves from './views/Profile/MyShelves';
 import MyProducts from './views/Profile/MyProducts';
 import NewShelf from './views/Edit/NewShelf';
+import NewProduct from './views/Edit/NewProduct';
 import User from './views/User';
 import Admin from './views/Admin';
 
 function App() {
   const [shelfId, setShelfId] = useState();
+  const [category, setCategory] = useState();
 
   useEffect(() => {
     async function loadData() {
@@ -43,8 +45,15 @@ function App() {
           </Route>
         </Route>
 
-        <Route path="/my-shelves/edit" element={<Admin />}>
-          <Route path="new-shelf" element={<NewShelf />} />
+        <Route path="/my-shelves/edit" element={<Admin category={category} />}>
+          <Route
+            path="new-shelf"
+            element={<NewShelf setCategory={setCategory} />}
+          />
+          <Route
+            path="new-product"
+            element={<NewProduct setCategory={setCategory} />}
+          />
         </Route>
       </Routes>
     </ChakraProvider>
