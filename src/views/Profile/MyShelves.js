@@ -25,6 +25,7 @@ import { loadShelves } from '../../utils/dataLoad';
 export default function MyCollections() {
   const [myShelvesData, setMyShelvesData] = useState([]);
   const [finishedLoading, setFinishLoading] = useState(false);
+  const [currentShelf, setCurrentShelf] = useState(undefined);
 
   const myShelves = (
     <React.Fragment>

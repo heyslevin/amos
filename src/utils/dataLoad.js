@@ -8,6 +8,16 @@ import {
   getDocs,
 } from 'firebase/firestore';
 
+const loadShelfName = async (shelfId, setShelfName) => {
+  const docRef = doc(db, 'shelves', shelfId);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    setShelfName(docSnap.data().title);
+  } else {
+    console.log('no document');
+  }
+};
+
 const loadShelves = async (setShelvesData, setFinishLoading) => {
   const q = query(collection(db, 'shelves'));
   const querySnapshot = await getDocs(q);
@@ -41,4 +51,4 @@ const fetchShelfProducts = async (
   }
 };
 
-export { loadShelves, fetchShelfProducts };
+export { loadShelves, fetchShelfProducts, loadShelfName };

@@ -11,4 +11,13 @@ const addNewShelf = async data => {
   }
 };
 
-export { addNewShelf };
+const addNewProduct = async (data, shelf) => {
+  try {
+    const docRef = await addDoc(collection(db, shelf), data);
+    console.log(docRef.id);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export { addNewShelf, addNewProduct };

@@ -2,10 +2,10 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import NavbarEdit from '../components/nav/NavbarEdit';
 
-export default function Admin({ category }) {
+export default function Admin({ shelf }) {
   return (
     <React.Fragment>
-      <NavbarEdit category={category} />
+      <NavbarEdit shelf={shelf} />
       <Outlet />
     </React.Fragment>
   );

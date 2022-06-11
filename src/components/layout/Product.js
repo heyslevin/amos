@@ -16,6 +16,9 @@ function Product({ name, brand }) {
       p={3}
       rounded="lg"
       m="5px"
+      flex="0"
+      flexBasis="calc(33.33333% - 10px)"
+      boxSizing="border-box"
     >
       <Image mt={0} src="https://bit.ly/dan-abramov"></Image>
       <Box align="center">

@@ -17,10 +17,11 @@ import NewShelf from './views/Edit/NewShelf';
 import NewProduct from './views/Edit/NewProduct';
 import User from './views/User';
 import Admin from './views/Admin';
+import SingleShelf from './views/SingleShelf';
 
 function App() {
   const [shelfId, setShelfId] = useState();
-  const [category, setCategory] = useState();
+  const [shelf, setShelf] = useState();
 
   useEffect(() => {
     async function loadData() {
@@ -39,20 +40,21 @@ function App() {
             element={<Shelves setShelfId={setShelfId} />}
           />
           <Route path="/products" element={<Products shelfId={shelfId} />} />
+          <Route
+            path="/single-shelf"
+            element={<SingleShelf shelfId={shelfId} />}
+          />
           <Route path="/profile" element={<Profile />}>
             <Route path="my-shelves" element={<MyShelves />} />
             <Route path="my-products" element={<MyProducts />} />
           </Route>
         </Route>
 
-        <Route path="/my-shelves/edit" element={<Admin category={category} />}>
-          <Route
-            path="new-shelf"
-            element={<NewShelf setCategory={setCategory} />}
-          />
+        <Route path="/my-shelves/edit" element={<Admin shelf={shelf} />}>
+          <Route path="new-shelf" element={<NewShelf setShelf={setShelf} />} />
           <Route
             path="new-product"
-            element={<NewProduct setCategory={setCategory} />}
+            element={<NewProduct setShelf={setShelf} />}
           />
         </Route>
       </Routes>

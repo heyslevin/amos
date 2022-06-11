@@ -22,7 +22,7 @@ import Dropzone from '../../components/forms/Dropzone';
 
 import { addNewShelf } from '../../utils/dataSend';
 
-export default function NewShelf({ setCategory }) {
+export default function NewShelf({ setShelf }) {
   const [formData, setFormData] = useState({});
   const [isLoading, setisLoading] = useState(false);
   const [successForm, setSuccessForm] = useState(false);
@@ -61,8 +61,8 @@ export default function NewShelf({ setCategory }) {
   };
 
   useEffect(() => {
-    setCategory('Product');
-  }, []);
+    setShelf('Product');
+  }, [setShelf]);
 
   return (
     <VStack px={8}>
@@ -103,6 +103,17 @@ export default function NewShelf({ setCategory }) {
                   placeholder="Enter brand"
                   onChange={updateInfo}
                   value={formData.title}
+                />
+                <FormLabel htmlFor="url" fontSize="1em">
+                  Link
+                </FormLabel>
+                <Input
+                  mb={5}
+                  id="url"
+                  name="url"
+                  placeholder="Enter url for product"
+                  onChange={updateInfo}
+                  value={formData.url}
                 />
                 <FormLabel htmlFor="description" fontSize="1em">
                   Additional info (optional)
