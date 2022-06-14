@@ -11,9 +11,12 @@ const addNewShelf = async data => {
   }
 };
 
-const addNewProduct = async (data, shelf) => {
+const addNewProduct = async (data, shelfId) => {
   try {
-    const docRef = await addDoc(collection(db, shelf), data);
+    console.log('Data sent:');
+    console.log(data);
+    console.log(shelfId);
+    const docRef = await addDoc(collection(db, 'product'), data);
     console.log(docRef.id);
   } catch (error) {
     console.error(error);

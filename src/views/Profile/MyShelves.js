@@ -18,7 +18,7 @@ import { useEffect, useState } from 'react';
 import { Link as RouterLink, Outlet } from 'react-router-dom';
 
 import MyShelf from '../../components/layout/MyShelf';
-import CreateCollection from '../../components/layout/NewCollectionBlock';
+import AddCollectionBlock from '../../components/layout/AddCollectionBlock';
 
 import { loadShelves } from '../../utils/dataLoad';
 
@@ -33,7 +33,7 @@ export default function MyCollections() {
         <MyShelf key={i} shelfData={shelf} finishedLoading={finishedLoading} />
       ))}
 
-      <CreateCollection />
+      <AddCollectionBlock />
     </React.Fragment>
   );
 

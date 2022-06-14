@@ -7,7 +7,7 @@ import {
   LinkOverlay,
 } from '@chakra-ui/react';
 
-function Product({ name, brand }) {
+function Product({ productData }) {
   return (
     <LinkBox
       as={VStack}
@@ -16,14 +16,20 @@ function Product({ name, brand }) {
       p={3}
       rounded="lg"
       m="5px"
-      flex="0"
       flexBasis="calc(33.33333% - 10px)"
       boxSizing="border-box"
     >
-      <Image mt={0} src="https://bit.ly/dan-abramov"></Image>
+      <Image
+        mt={0}
+        height="80%"
+        objectFit="cover"
+        src={
+          productData.image ? productData.image : 'https://bit.ly/dan-abramov'
+        }
+      ></Image>
       <Box align="center">
-        <Text fontSize="sm">{brand}</Text>
-        <Text>{name}</Text>
+        <Text fontSize="sm">{productData.brand}</Text>
+        <Text>{productData.name}</Text>
       </Box>
       <LinkOverlay mt="0 !important" p={0} href="www.firmalt.com" />
     </LinkBox>

@@ -17,7 +17,7 @@ import { BiCheckCircle } from 'react-icons/bi';
 
 import { addNewShelf } from '../../utils/dataSend';
 
-export default function NewShelf({ setCategory }) {
+export default function NewShelf({ setShelf }) {
   const [formData, setFormData] = useState({});
   const [isLoading, setisLoading] = useState(false);
   const [successForm, setSuccessForm] = useState(false);
@@ -47,8 +47,8 @@ export default function NewShelf({ setCategory }) {
   };
 
   useEffect(() => {
-    setCategory('Shelf');
-  }, []);
+    setShelf('Shelf');
+  }, [setShelf]);
 
   return (
     <VStack px={8}>

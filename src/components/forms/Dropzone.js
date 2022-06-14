@@ -6,30 +6,15 @@ import { AiFillFileAdd } from 'react-icons/ai';
 
 import { uploadFromBlobAsync } from '../../utils/storage';
 
-export default function Dropzone({ setFile, file }) {
-  const [uploadSuccess, setUploadSuccess] = useState(false);
-
+export default function Dropzone({ setFile, file, uploadSuccess }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop: useCallback(async acceptedFiles => {
-      const file = acceptedFiles?.[0];
-
-      if (!file) {
-        return;
-      }
-
-      try {
-        await uploadFromBlobAsync({
-          blobUrl: URL.createObjectURL(file),
-          name: `${file.name}_${Date.now()}`,
-        });
-        console.log('up it goes');
-      } catch (error) {
-        console.log(error);
-      }
-
-      setFile(file);
-      setUploadSuccess(true);
-    }, []),
+    onDrop: useCallback(
+      async acceptedFiles => {
+        const file = acceptedFiles?.[0];
+        setFile(file);
+      },
+      [setFile]
+    ),
     accept: { 'image/jpeg': [], 'image/png': [] },
     maxFiles: 1,
     multiple: false,
@@ -63,7 +48,7 @@ export default function Dropzone({ setFile, file }) {
       {...getRootProps()}
     >
       <input {...getInputProps()} />
-      <p>{uploadSuccess ? file.name : dropText}</p>
+      <p>{file ? file.name : dropText}</p>
     </Center>
   );
 }

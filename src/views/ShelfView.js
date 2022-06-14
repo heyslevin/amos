@@ -27,22 +27,26 @@ import { fetchShelfProducts, loadShelfName } from '../utils/dataLoad';
 import { useState, useEffect } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
-export default function SingleShelf() {
+import AddProductBlock from '../components/layout/AddProductBlock';
+
+export default function ShelfView({ shelfId }) {
   const [productsInShelf, setProductsInShelf] = useState([]);
   const [emptyProducts, setEmptyProducts] = useState(false);
   const [shelfName, setShelfName] = useState(undefined);
 
-  const tempShelfId = '10O1qNmjvGd8Rk2pnKpl';
-
-  let allProducts = productsInShelf.map((product, i) => {
-    return <Product key={i} name={product.name} brand={product.brand} />;
-  });
-
+  let allProducts = (
+    <React.Fragment>
+      {productsInShelf.map((product, i) => {
+        return <Product key={i} productData={product} />;
+      })}
+      <AddProductBlock />
+    </React.Fragment>
+  );
   useEffect(() => {
     //fix here
-    fetchShelfProducts(tempShelfId, setProductsInShelf, setEmptyProducts);
-    const name = loadShelfName(tempShelfId, setShelfName);
-  }, []);
+    fetchShelfProducts(shelfId, setProductsInShelf, setEmptyProducts);
+    const name = loadShelfName(shelfId, setShelfName);
+  }, [shelfId]);
 
   let skeleton;
   if (!emptyProducts) {
@@ -91,12 +95,8 @@ export default function SingleShelf() {
           <Text>Products are affiliated</Text>
         </HStack>
 
-        <Flex wrap="wrap" pt={8}>
+        <Flex wrap="wrap" pt={8} width="100%">
           {allProducts.length === 0 ? skeleton : allProducts}
-          {allProducts}
-          {allProducts}
-          {allProducts}
-          {allProducts}
         </Flex>
       </VStack>
     </Container>

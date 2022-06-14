@@ -13,9 +13,6 @@ import {
 import { Link as RouterLink } from 'react-router-dom';
 
 export default function Shelf({ shelfData, setShelfId }) {
-  console.log('data time');
-  console.log(shelfData);
-
   return (
     <LinkBox>
       <VStack
@@ -53,7 +50,7 @@ export default function Shelf({ shelfData, setShelfId }) {
         <LinkOverlay
           as={RouterLink}
           onClick={() => setShelfId(shelfData.id)}
-          to="/products"
+          to="/shelf-view"
           mt="0 !important"
           p={0}
         />

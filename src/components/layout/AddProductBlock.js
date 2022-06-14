@@ -10,39 +10,42 @@ import {
   useColorMode,
 } from '@chakra-ui/react';
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
-export default function CreateCollection() {
+export default function AddProductBlock() {
   const { colorMode } = useColorMode();
 
   return (
     <LightMode>
       <Flex
-        direction="column"
-        rounded="lg"
-        mr={2}
-        ms={0}
-        mt={2}
-        h={300}
-        w={300}
-        background="none"
+        as={VStack}
         border="1px solid"
+        p={3}
+        rounded="lg"
+        m="5px"
+        flexBasis="calc(33.33333% - 10px)"
+        boxSizing="border-box"
+        background="none"
         borderColor="gray.200"
         overflow="hidden"
         transition="0.2s ease"
+        bg="gray.100"
       >
-        <VStack h="100%" justifyContent="center" bg="gray.100">
+        <VStack h="100%" justifyContent="center">
           <Heading size="md" textAlign="center" color="purple.800">
-            Start a New Collection
+            Add a new product
           </Heading>
-          <Text color="black">Add a new collection of products</Text>
+          {/* <Text color="black">Add a new collection of products</Text> */}
           <Flex>
             <Button
+              as={RouterLink}
               mt={3}
               variant="outline"
               bg="whitesmoke"
               colorScheme="purple"
+              to="/my-shelves/edit/new-product"
             >
-              New Collection
+              New Product
             </Button>
           </Flex>
         </VStack>

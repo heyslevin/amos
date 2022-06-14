@@ -17,7 +17,7 @@ import NewShelf from './views/Edit/NewShelf';
 import NewProduct from './views/Edit/NewProduct';
 import User from './views/User';
 import Admin from './views/Admin';
-import SingleShelf from './views/SingleShelf';
+import ShelfView from './views/ShelfView';
 
 function App() {
   const [shelfId, setShelfId] = useState();
@@ -40,10 +40,7 @@ function App() {
             element={<Shelves setShelfId={setShelfId} />}
           />
           <Route path="/products" element={<Products shelfId={shelfId} />} />
-          <Route
-            path="/single-shelf"
-            element={<SingleShelf shelfId={shelfId} />}
-          />
+          <Route path="/shelf-view" element={<ShelfView shelfId={shelfId} />} />
           <Route path="/profile" element={<Profile />}>
             <Route path="my-shelves" element={<MyShelves />} />
             <Route path="my-products" element={<MyProducts />} />
@@ -54,7 +51,7 @@ function App() {
           <Route path="new-shelf" element={<NewShelf setShelf={setShelf} />} />
           <Route
             path="new-product"
-            element={<NewProduct setShelf={setShelf} />}
+            element={<NewProduct shelfId={shelfId} />}
           />
         </Route>
       </Routes>
