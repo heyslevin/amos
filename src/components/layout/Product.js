@@ -5,6 +5,7 @@ import {
   Box,
   Text,
   LinkOverlay,
+  Flex,
 } from '@chakra-ui/react';
 
 function Product({ productData }) {
@@ -19,14 +20,16 @@ function Product({ productData }) {
       flexBasis="calc(33.33333% - 10px)"
       boxSizing="border-box"
     >
-      <Image
-        mt={0}
-        height="80%"
-        objectFit="cover"
-        src={
-          productData.image ? productData.image : 'https://bit.ly/dan-abramov'
-        }
-      ></Image>
+      <Flex width={[280, 180, 280]} height={[280, 180, 280]} overflow="hidden">
+        <Image
+          mt={0}
+          objectFit="cover"
+          width="100%"
+          src={
+            productData.image ? productData.image : 'https://bit.ly/dan-abramov'
+          }
+        ></Image>
+      </Flex>
       <Box align="center">
         <Text fontSize="sm">{productData.brand}</Text>
         <Text>{productData.name}</Text>

@@ -23,7 +23,7 @@ import Dropzone from '../../components/forms/Dropzone';
 import { addNewProduct } from '../../utils/dataSend';
 import { uploadFromBlobAsync } from '../../utils/storage';
 
-export default function NewProduct({ shelfId }) {
+export default function NewProduct({ shelfId, setAdminNavTitle }) {
   const [formData, setFormData] = useState({
     name: '',
     brand: '',
@@ -92,9 +92,9 @@ export default function NewProduct({ shelfId }) {
     }, 300);
   };
 
-  // useEffect(() => {
-  //   setShelf('Product');
-  // }, [setShelf]);
+  useEffect(() => {
+    setAdminNavTitle('Product');
+  }, [setAdminNavTitle]);
 
   return (
     <VStack px={8} mb={10}>

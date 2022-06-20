@@ -17,6 +17,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   Link,
+  useColorModeValue,
 } from '@chakra-ui/react';
 
 import { BiArrowBack } from 'react-icons/bi';
@@ -80,8 +81,24 @@ export default function ShelfView({ shelfId }) {
         Naomi Watts Shop
       </Button>
       <VStack>
-        <Flex align="flex-start" width="100%">
-          <Heading>{shelfName}</Heading>
+        <Flex width="100%">
+          <Flex
+            width="100%"
+            flex-direction="row"
+            align="flex-start"
+            justifyContent="space-between"
+          >
+            <Heading>{shelfName}</Heading>
+            <Button
+              as={RouterLink}
+              to="/my-shelves/edit/new-shelf"
+              bg="purple.600"
+              color={useColorModeValue('white', 'white')}
+              _hover={{ bg: 'purple.800' }}
+            >
+              Add Product
+            </Button>
+          </Flex>
         </Flex>
         <Divider />
         <HStack w="100%" height="40px" pt={2} color="gray.500">
@@ -95,7 +112,7 @@ export default function ShelfView({ shelfId }) {
           <Text>Products are affiliated</Text>
         </HStack>
 
-        <Flex wrap="wrap" pt={8} width="100%">
+        <Flex wrap="wrap" pt={8} width="100%" justify="center">
           {allProducts.length === 0 ? skeleton : allProducts}
         </Flex>
       </VStack>

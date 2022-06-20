@@ -9,7 +9,7 @@ import { auth } from './utils/firebase';
 
 import Navbar from './components/nav/Navbar';
 import Products from './views/Products';
-import Shelves from './views/Shelves';
+import UserShelves from './views/UserShelves';
 import Profile from './views/Profile/Profile';
 import MyShelves from './views/Profile/MyShelves';
 import MyProducts from './views/Profile/MyProducts';
@@ -21,7 +21,7 @@ import ShelfView from './views/ShelfView';
 
 function App() {
   const [shelfId, setShelfId] = useState();
-  const [shelf, setShelf] = useState();
+  const [adminNavTitle, setAdminNavTitle] = useState();
 
   useEffect(() => {
     async function loadData() {
@@ -37,21 +37,35 @@ function App() {
         <Route path="/" element={<User />}>
           <Route
             path="/shelves"
-            element={<Shelves setShelfId={setShelfId} />}
+            element={<UserShelves setShelfId={setShelfId} />}
           />
           <Route path="/products" element={<Products shelfId={shelfId} />} />
           <Route path="/shelf-view" element={<ShelfView shelfId={shelfId} />} />
           <Route path="/profile" element={<Profile />}>
-            <Route path="my-shelves" element={<MyShelves />} />
+            <Route
+              path="my-shelves"
+              element={<MyShelves setShelfId={setShelfId} />}
+            />
             <Route path="my-products" element={<MyProducts />} />
           </Route>
         </Route>
 
-        <Route path="/my-shelves/edit" element={<Admin shelf={shelf} />}>
-          <Route path="new-shelf" element={<NewShelf setShelf={setShelf} />} />
+        <Route
+          path="/my-shelves/edit"
+          element={<Admin adminNavTitle={adminNavTitle} />}
+        >
+          <Route
+            path="new-shelf"
+            element={<NewShelf setAdminNavTitle={setAdminNavTitle} />}
+          />
           <Route
             path="new-product"
-            element={<NewProduct shelfId={shelfId} />}
+            element={
+              <NewProduct
+                shelfId={shelfId}
+                setAdminNavTitle={setAdminNavTitle}
+              />
+            }
           />
         </Route>
       </Routes>

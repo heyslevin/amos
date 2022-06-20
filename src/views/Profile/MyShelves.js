@@ -22,7 +22,7 @@ import AddCollectionBlock from '../../components/layout/AddCollectionBlock';
 
 import { loadShelves } from '../../utils/dataLoad';
 
-export default function MyCollections() {
+export default function MyShelves({ setShelfId }) {
   const [myShelvesData, setMyShelvesData] = useState([]);
   const [finishedLoading, setFinishLoading] = useState(false);
   const [currentShelf, setCurrentShelf] = useState(undefined);
@@ -30,7 +30,12 @@ export default function MyCollections() {
   const myShelves = (
     <React.Fragment>
       {myShelvesData.map((shelf, i) => (
-        <MyShelf key={i} shelfData={shelf} finishedLoading={finishedLoading} />
+        <MyShelf
+          key={i}
+          shelfData={shelf}
+          finishedLoading={finishedLoading}
+          setShelfId={setShelfId}
+        />
       ))}
 
       <AddCollectionBlock />
@@ -58,7 +63,7 @@ export default function MyCollections() {
         color={useColorModeValue('white', 'white')}
         _hover={{ bg: 'purple.800' }}
       >
-        Add Collection
+        Add Shelf
       </Button>
       <Flex pb={10} direction="row" wrap="wrap">
         {finishedLoading ? myShelves : skeletons}
