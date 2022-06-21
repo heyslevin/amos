@@ -6,6 +6,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  limit,
 } from 'firebase/firestore';
 
 const loadShelfName = async (shelfId, setShelfName) => {
@@ -16,6 +17,31 @@ const loadShelfName = async (shelfId, setShelfName) => {
   } else {
     console.log('no document');
   }
+};
+
+const loadShelfImageSamples = async (shelfId, setProductImages) => {
+  //Query Images with shelfId
+  const productsRef = collection(db, 'product');
+  const q = query(
+    productsRef,
+    where('shelves', 'array-contains', shelfId),
+    limit(3)
+  );
+  const querySnapshot = await getDocs(q);
+  const allProductData = async () => {
+    return querySnapshot.docs.map(doc => {
+      return doc.data();
+    });
+  };
+
+  const allProjectData = await allProductData();
+  const onlyImages = allProjectData.map(product => {
+    return product.image;
+  });
+
+  setProductImages(onlyImages);
+  //Load 3 images
+  //Return array of 3 image links
 };
 
 const loadShelves = async (setShelvesData, setFinishLoading) => {
@@ -51,4 +77,9 @@ const fetchShelfProducts = async (
   }
 };
 
-export { loadShelves, fetchShelfProducts, loadShelfName };
+export {
+  loadShelves,
+  fetchShelfProducts,
+  loadShelfName,
+  loadShelfImageSamples,
+};

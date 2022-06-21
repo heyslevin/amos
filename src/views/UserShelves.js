@@ -103,8 +103,6 @@ export default function UserShelves({ setShelfId }) {
           </HStack>
         </Flex>
         <Flex wrap="wrap" justifyContent="center">
-          {/* <Shelf title="Products for Sensitive Skin" />
-        <Shelf title="My favorite cleansers" /> */}
           {allShelves.length === 0 ? skeleton : allShelves}
         </Flex>
       </VStack>
