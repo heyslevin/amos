@@ -10,17 +10,34 @@ import {
   VStack,
   HStack,
   Button,
+  Text,
+  FormHelperText,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { BiCheckCircle } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
 
 import { addNewShelf } from '../../utils/dataSend';
 
-export default function NewShelf({ setAdminNavTitle }) {
-  const [formData, setFormData] = useState({});
-  const [isLoading, setisLoading] = useState(false);
+export default function NewShelf({ userData, setAdminNavTitle, setShelfId }) {
+  const [formData, setFormData] = useState({ title: '', description: '' });
+  const [isLoading, setIsLoading] = useState(false);
   const [successForm, setSuccessForm] = useState(false);
+  const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let timerId;
+    if (successForm) {
+      timerId = setTimeout(() => {
+        navigate('/shelf-view');
+      }, 2000);
+    }
+    return () => clearInterval(timerId);
+  }, [successForm, navigate]);
 
   const updateInfo = e => {
     setFormData({
@@ -29,21 +46,29 @@ export default function NewShelf({ setAdminNavTitle }) {
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
+    console.log(formData.description);
     e.preventDefault();
-    setisLoading(true);
-    addNewShelf({
-      title: formData.title,
-      description: formData.description,
-    });
-    setFormData({
-      title: '',
-      description: '',
-    });
-    setSuccessForm(true);
-    setTimeout(() => {
-      setisLoading(false);
-    }, 300);
+    setIsLoading(true);
+
+    await addNewShelf(
+      {
+        title: formData.title,
+        description: formData.description,
+        uid: userData.uid,
+      },
+      setError,
+      setSuccessForm,
+      setIsLoading,
+      setShelfId
+    );
+
+    if (!error) {
+      setFormData({
+        title: '',
+        description: '',
+      });
+    }
   };
 
   useEffect(() => {
@@ -63,7 +88,7 @@ export default function NewShelf({ setAdminNavTitle }) {
       >
         <Container align="center">
           <Heading pb={10} size="lg">
-            Create a new shelf
+            {userData.name}'s new Shelf
           </Heading>
           <Box border="1px solid" borderColor="gray.600" p={3} rounded="lg">
             <form onSubmit={handleSubmit}>
@@ -78,18 +103,23 @@ export default function NewShelf({ setAdminNavTitle }) {
                   name="title"
                   placeholder="Enter Title"
                   onChange={updateInfo}
-                  value={formData.title}
+                  value={formData.title || ''}
                 />
+              </FormControl>
+              <FormControl>
                 <FormLabel htmlFor="description" fontSize="1em">
-                  Description
+                  Description (optional)
                 </FormLabel>
                 <Textarea
                   id="description"
                   name="description"
                   placeholder="Enter Description..."
                   onChange={updateInfo}
-                  value={formData.description}
+                  value={formData.description || ''}
                 />
+                <FormHelperText align="left">
+                  You can add this description later ;)
+                </FormHelperText>
               </FormControl>
 
               <HStack pt={8} justify="space-between">
@@ -97,6 +127,7 @@ export default function NewShelf({ setAdminNavTitle }) {
                 <Button
                   isLoading={isLoading}
                   type="submit"
+                  color="white"
                   backgroundColor="purple.700"
                   rightIcon={successForm ? <BiCheckCircle /> : ''}
                 >
@@ -104,6 +135,11 @@ export default function NewShelf({ setAdminNavTitle }) {
                 </Button>
               </HStack>
             </form>
+            <Text pt={3} textAlign="left" color="red" fontWeight="medium">
+              {error
+                ? 'Something has gone horribly wrong. Please try again.'
+                : ''}
+            </Text>
           </Box>
         </Container>
       </Flex>

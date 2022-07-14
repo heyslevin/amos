@@ -23,7 +23,7 @@ export default function Shelf({ shelfData, setShelfId }) {
 
   useEffect(() => {
     loadShelfImageSamples(shelfData.id, setProductImages);
-  }, []);
+  }, [shelfData]);
 
   const noImage = (
     <Center w="100%" h="100%">

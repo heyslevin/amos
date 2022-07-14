@@ -30,7 +30,7 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 import AddProductBlock from '../components/layout/AddProductBlock';
 
-export default function ShelfView({ shelfId }) {
+export default function ShelfView({ userData, shelfId }) {
   const [productsInShelf, setProductsInShelf] = useState([]);
   const [emptyProducts, setEmptyProducts] = useState(false);
   const [shelfName, setShelfName] = useState(undefined);
@@ -78,7 +78,7 @@ export default function ShelfView({ shelfId }) {
         pb={3}
         color="gray.500"
       >
-        Naomi Watts Shop
+        Naomi's Shop
       </Button>
       <VStack>
         <Flex width="100%">
@@ -91,7 +91,7 @@ export default function ShelfView({ shelfId }) {
             <Heading>{shelfName}</Heading>
             <Button
               as={RouterLink}
-              to="/my-shelves/edit/new-shelf"
+              to="/my-shelves/edit/new-product"
               bg="purple.600"
               color={useColorModeValue('white', 'white')}
               _hover={{ bg: 'purple.800' }}

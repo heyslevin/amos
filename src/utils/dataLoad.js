@@ -9,6 +9,20 @@ import {
   limit,
 } from 'firebase/firestore';
 
+const loadUserData = async userId => {
+  console.log('loading');
+  console.log(userId);
+  const docRef = doc(db, 'users', userId);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    console.log('user loaded succesfully');
+    console.log(docSnap.data());
+    return docSnap.data();
+  } else {
+    console.log('error, no user exists');
+  }
+};
+
 const loadShelfName = async (shelfId, setShelfName) => {
   const docRef = doc(db, 'shelves', shelfId);
   const docSnap = await getDoc(docRef);
@@ -82,4 +96,5 @@ export {
   fetchShelfProducts,
   loadShelfName,
   loadShelfImageSamples,
+  loadUserData,
 };

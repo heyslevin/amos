@@ -17,7 +17,7 @@ import { BiCollection, BiCube } from 'react-icons/bi';
 import { FaGratipay } from 'react-icons/fa';
 import { Outlet, NavLink, Link as RouterLink } from 'react-router-dom';
 
-export default function Profile() {
+export default function Profile({ userData }) {
   //Button Styling
   let activeStyle = {
     background: 'var(--chakra-colors-gray-100)',
@@ -36,10 +36,10 @@ export default function Profile() {
         minWidth="max-content"
         flex-shrink="0"
       >
-        <Avatar name="James Donovan" size="xl"></Avatar>
+        <Avatar name={userData.name} size="xl"></Avatar>
         <VStack align="left" pl={4} flex="1">
-          <Heading>James Donovan</Heading>
-          <Text color="gray.400">@jamesdonovan</Text>
+          <Heading>{userData.name}</Heading>
+          <Text color="gray.400">@pendingHandle</Text>
         </VStack>
       </Flex>
       <Divider pt={5} />
