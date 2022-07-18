@@ -24,8 +24,13 @@ export default function Navbar({ userData }) {
         </Box>
         <Flex align="center">
           <Link mr={5} as={RouterLink} to="/shelves">
-            Shelves
+            Browse
           </Link>
+          {userData && (
+            <Link mr={5} as={RouterLink} to="/my-shelves-view">
+              My Shelves
+            </Link>
+          )}
           {!userData && (
             <Link mr={5} as={RouterLink} to="/login">
               Login

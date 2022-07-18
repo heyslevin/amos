@@ -18,6 +18,7 @@ import NewProduct from './views/Edit/NewProduct';
 import User from './views/User';
 import Admin from './views/Admin';
 import ShelfView from './views/ShelfView';
+import MyShelvesView from './views/Profile/MyShelvesView';
 
 import Login from './views/Auth/Login';
 import SignUp from './views/Auth/SignUp';
@@ -46,6 +47,10 @@ function App() {
           />
           <Route path="/products" element={<Products shelfId={shelfId} />} />
           <Route path="/shelf-view" element={<ShelfView shelfId={shelfId} />} />
+          <Route
+            path="/my-shelves-view"
+            element={<MyShelvesView userData={userData} />}
+          />
           <Route path="/profile" element={<Profile userData={userData} />}>
             <Route
               path="my-shelves"

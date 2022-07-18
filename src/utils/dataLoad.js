@@ -58,8 +58,11 @@ const loadShelfImageSamples = async (shelfId, setProductImages) => {
   //Return array of 3 image links
 };
 
-const loadShelves = async (setShelvesData, setFinishLoading) => {
-  const q = query(collection(db, 'shelves'));
+const loadShelves = async (setShelvesData, setFinishLoading, userData) => {
+  const shelvesRef = collection(db, 'shelves');
+  console.log('searching shelves with');
+  console.log(userData.uid);
+  const q = query(shelvesRef, where('uid', '==', userData.uid));
   const querySnapshot = await getDocs(q);
   let allShelvesData = querySnapshot.docs.map(doc => {
     let data = doc.data();
