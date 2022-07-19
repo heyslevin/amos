@@ -22,7 +22,7 @@ import AddCollectionBlock from '../../components/layout/AddCollectionBlock';
 
 import { loadShelves } from '../../utils/dataLoad';
 
-export default function MyShelves({ setShelfId }) {
+export default function MyShelves({ setShelfId, userData }) {
   const [myShelvesData, setMyShelvesData] = useState([]);
   const [finishedLoading, setFinishLoading] = useState(false);
   const [currentShelf, setCurrentShelf] = useState(undefined);
@@ -51,8 +51,8 @@ export default function MyShelves({ setShelfId }) {
   );
 
   useEffect(() => {
-    loadShelves(setMyShelvesData, setFinishLoading);
-  }, []);
+    loadShelves(setMyShelvesData, setFinishLoading, userData);
+  }, [userData]);
 
   return (
     <VStack align="flex-start">

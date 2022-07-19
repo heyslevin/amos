@@ -43,18 +43,30 @@ function App() {
         <Route path="/" element={<User userData={userData} />}>
           <Route
             path="/shelves"
-            element={<UserShelves setShelfId={setShelfId} />}
+            element={
+              <UserShelves setShelfId={setShelfId} userData={userData} />
+            }
           />
           <Route path="/products" element={<Products shelfId={shelfId} />} />
-          <Route path="/shelf-view" element={<ShelfView shelfId={shelfId} />} />
+          <Route
+            path="/shelf-view"
+            element={<ShelfView shelfId={shelfId} userData={userData} />}
+          />
           <Route
             path="/my-shelves-view"
-            element={<MyShelvesView userData={userData} />}
+            element={
+              <MyShelvesView setShelfId={setShelfId} userData={userData} />
+            }
           />
-          <Route path="/profile" element={<Profile userData={userData} />}>
+          <Route
+            path="/profile"
+            element={<Profile setShelfId={setShelfId} userData={userData} />}
+          >
             <Route
               path="my-shelves"
-              element={<MyShelves setShelfId={setShelfId} />}
+              element={
+                <MyShelves setShelfId={setShelfId} userData={userData} />
+              }
             />
             <Route path="my-products" element={<MyProducts />} />
           </Route>

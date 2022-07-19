@@ -78,7 +78,7 @@ export default function ShelfView({ userData, shelfId }) {
         pb={3}
         color="gray.500"
       >
-        Naomi's Shop
+        {userData.name}'s Shop
       </Button>
       <VStack>
         <Flex width="100%">
@@ -103,8 +103,12 @@ export default function ShelfView({ userData, shelfId }) {
         <Divider />
         <HStack w="100%" height="40px" pt={2} color="gray.500">
           <HStack>
-            <Avatar name="Naomi Watts" size="sm"></Avatar>
-            <Text>Naomi Watts</Text>
+            <Avatar
+              name={userData.name}
+              src={userData.profileImg}
+              size="sm"
+            ></Avatar>
+            <Text>{userData.name}</Text>
           </HStack>
           <Divider orientation="vertical" />
           <Text>10 Products</Text>

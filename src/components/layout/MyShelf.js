@@ -55,7 +55,7 @@ export default function MyShelf({ shelfData, finishedLoading, setShelfId }) {
           mt="0 !important"
           p={0}
           as={RouterLink}
-          onClick={() => setShelfId(shelfData.id)}
+          onClick={() => alert(shelfData.id)}
           to="/shelf-view"
         />
       </LinkBox>

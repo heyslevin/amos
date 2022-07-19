@@ -13,8 +13,8 @@ Name after logging in
 
   - 2 Views. My Shelf, Other User Shelf
   - FIX
-    - Loading shelves on Profile
-    - Clicking on Shelf to shelf view on "My Shelves"
+    - Loading shelves on Profile [x]
+    - Clicking on Shelf to shelf view on "My Shelves" [x]
     - Browse other shelfs of other users
 
 - Form to fill out additional data
@@ -25,5 +25,15 @@ Name after logging in
   - Social Media Links
   - Bio
 
+- If you are logged in, option edit your shelves [ ]
+
+  - (have to think through logic here)
+
+- Edit Shelf Info
+  - Edit
+  - Delete
+- Edit Products Info
+  - Edit
+  - Delete
 - Add product to shelf correctly [ ]
 - Display correct info on shelf (quantity) [ ]

@@ -36,10 +36,14 @@ export default function Profile({ userData }) {
         minWidth="max-content"
         flex-shrink="0"
       >
-        <Avatar name={userData.name} size="xl"></Avatar>
+        <Avatar
+          name={userData.name}
+          src={userData.profileImg}
+          size="xl"
+        ></Avatar>
         <VStack align="left" pl={4} flex="1">
           <Heading>{userData.name}</Heading>
-          <Text color="gray.400">@pendingHandle</Text>
+          <Text color="gray.400">@{userData.handle}</Text>
         </VStack>
       </Flex>
       <Divider pt={5} />

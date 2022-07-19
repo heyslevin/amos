@@ -22,7 +22,7 @@ import { useState } from 'react';
 
 import { FiInstagram, FiTwitter, FiYoutube } from 'react-icons/fi';
 
-export default function UserShelves({ userData, setShelfId }) {
+export default function MyShelvesView({ userData, setShelfId }) {
   const [shelvesData, setShelvesData] = useState([]);
   const [loading, setLoading] = useState(false);
 
